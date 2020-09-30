@@ -18,8 +18,7 @@ class BoastsRoasts(models.Model):
         ('roast', 'Roast'),
     )
     post_type = models.CharField(
-        max_length=32, choices=post_choices, unique=True, default='Boast')
-    boasts = models.BooleanField(default=True)
+        max_length=32, choices=post_choices, default='Boast')
     post_text = models.CharField(max_length=240)
     up_votes = models.IntegerField(default=0)
     down_votes = models.IntegerField(default=0)
@@ -29,3 +28,8 @@ class BoastsRoasts(models.Model):
 
     def __str__(self):
         return self.post_text
+
+    def save(self):
+        self.total_votes = self.up_votes - self.down_votes
+        self.last_updated = timezone.now()
+        return super(BoastsRoasts, self).save()
