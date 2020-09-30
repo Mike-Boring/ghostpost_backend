@@ -22,8 +22,9 @@ class BoastsRoastsViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     @action(detail=False)
-    def HighestRated(self, request):
-        all_posts = BoastsRoasts.objects.all().order_by('total_votes')
+    def Highest_Rated(self, request):
+        all_posts = BoastsRoasts.objects.all().order_by(
+            'total_votes').reverse()
 
         serializer = self.get_serializer(all_posts, many=True)
         return Response(serializer.data)
