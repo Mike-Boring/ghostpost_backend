@@ -36,6 +36,20 @@ class BoastsRoastsViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(just_roasts, many=True)
         return Response(serializer.data)
 
+    @action(detail=True, methods=['post'])
+    def upvote(self, request, pk=None):
+        post = self.get_object()
+        post.up_votes = post.up_votes + 1
+        post.save()
+        return Response({'status': 'upvote updated'})
+
+    @action(detail=True, methods=['post'])
+    def downvote(self, request, pk=None):
+        post = self.get_object()
+        post.down_votes = post.down_votes + 1
+        post.save()
+        return Response({'status': 'downvote updated'})
+
 
 class MyUserViewSet(viewsets.ModelViewSet):
     queryset = MyUser.objects.filter(is_active=True)
