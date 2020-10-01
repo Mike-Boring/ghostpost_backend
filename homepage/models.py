@@ -29,11 +29,6 @@ class BoastsRoasts(models.Model):
     def __str__(self):
         return self.post_text
 
-    # def save(self):
-    #     self.total_votes = self.up_votes - self.down_votes
-    #     self.last_updated = timezone.now()
-    #     return super(BoastsRoasts, self).save()
-
     def save(self, *args, **kwargs):
         self.total_votes = self.up_votes - self.down_votes
         self.last_updated = timezone.now()
