@@ -29,7 +29,19 @@ class BoastsRoasts(models.Model):
     def __str__(self):
         return self.post_text
 
-    def save(self):
-        self.total_votes = self.up_votes - self.down_votes
-        self.last_updated = timezone.now()
-        return super(BoastsRoasts, self).save()
+    # def save(self):
+    #     self.total_votes = self.up_votes - self.down_votes
+    #     self.last_updated = timezone.now()
+    #     return super(BoastsRoasts, self).save()
+
+    # def post(self, request, pk, format=None):
+
+    #     new_post = self.get_object(pk)
+
+    #     post_type = request.data.get("post_type", None)
+    #     post_text = request.data.get('post_text', None)
+
+    #     new_post.post_type = post_type
+    #     new_post.post_text = post_text
+
+    #     new_post.save(force_insert=False)
