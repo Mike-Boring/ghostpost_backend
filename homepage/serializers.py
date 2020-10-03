@@ -24,5 +24,6 @@ class MyUserSerializer(serializers.HyperlinkedModelSerializer):
         fields = [
             'id',
             'username',
-            'is_active'
+            'is_active',
+            'password'
         ]
